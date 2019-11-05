@@ -2,7 +2,7 @@ package part1.lesson02.task03;
 
 public class InsertionSortPerson implements ComparatorPerson{
     /**
-     * Сортировка массива Person методом "Сортировка вставками".
+     * Функция сортировка массива Person методом "Сортировка вставками". {@link Person}
      * @param p Сортируемый массив Person
      */
     public static void insertionSort(Person[] p){

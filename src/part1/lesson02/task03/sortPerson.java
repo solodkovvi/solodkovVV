@@ -19,7 +19,14 @@ public class sortPerson {
 
     private static int ARRAY_LENGTH = 10000;
 
-    public static void main(String[] args) {
+    /**
+     * Генерация массива {@link Person},
+     * вывод неотсортированного массива {@link sortPerson#printArr(Person[])},
+     * сортировка массива двумя способами {@link BubbleSortPerson} {@link InsertionSortPerson} по правилу интерфейса {@link ComparatorPerson#compare(Person, Person)}
+     * вывод сортированного массива {@link sortPerson#printArr(Person[])}
+     * подсчёт времени вывполнения массива
+     */
+    public static void main() {
         //Создание основного массива Person для сортировки
         Person[] arrPerson = new Person[ARRAY_LENGTH];
         //Для корректного сравнения сортировок добавлена копия первого массива

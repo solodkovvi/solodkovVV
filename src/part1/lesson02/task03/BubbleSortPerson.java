@@ -2,7 +2,7 @@ package part1.lesson02.task03;
 
 public class BubbleSortPerson implements ComparatorPerson{
     /**
-     * Сортировка массива Person методом "Пузырьковой сортировки"
+     * Функция сортировка массива Person методом "Пузырьковой сортировки" {@link Person}
      * @param p Сортируемый массив Person
      */
     public static void bubbleSort(Person[] p){

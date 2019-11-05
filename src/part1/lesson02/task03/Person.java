@@ -11,6 +11,9 @@ import java.util.Random;
  */
 public class Person {
 
+    /**
+     * Набор возможных имён для мужчин
+     */
     enum enumManName {
         Liam,
         Noah,
@@ -113,6 +116,10 @@ public class Person {
         Sawyer,
         Jason
     }
+
+    /**
+     * Набор возможных имён для женщин
+     */
     enum enumWomanName {
         Emma,
         Olivia,
@@ -215,12 +222,22 @@ public class Person {
         Brielle,
         Madeline
     }
+
+    /**
+     * Возраст объекта Person
+     */
     private int age;
+    /**
+     * Пол объекта Person {@link Sex}
+     */
     private Sex sex;
+    /**
+     * Имя объекта Person
+     */
     private String name;
 
     /**
-     * метод получения параметра age
+     * Функция получения параметра возраст {@link Person#age}
      * @return int age
      */
     public int getAge() {
@@ -228,7 +245,7 @@ public class Person {
     }
 
     /**
-     * метод задания параметра age
+     * Функция задания параметра возраст {@link Person#age}
      * @param age - задаваемое значение age объекта Person
      */
     public void setAge(int age) {
@@ -238,7 +255,7 @@ public class Person {
     }
 
     /**
-     * метод получения строкового значения поля Sex
+     * Функция получения строкового значения поля пол {@link Person#sex}
      * @return строковое значение Sex
      */
     public String getSex() {
@@ -246,7 +263,7 @@ public class Person {
     }
 
     /**
-     * метод задания параметра sex
+     * Функция задания параметра пол {@link Person#sex}
      * @param sex объект класса sex
      */
     public void setSex(Sex sex) {
@@ -254,7 +271,7 @@ public class Person {
     }
 
     /**
-     * метод получения параметра name объекта Person
+     * Функция получения параметра имя {@link Person#name}
      * @return строковое значение name
      */
     public String getName() {
@@ -262,8 +279,9 @@ public class Person {
     }
 
     /**
-     * Случайный выбор из enumerables по параметру Пол
-     * @param sex - значение для подбора случайного имени
+     * Функция случайной установки имени из наборов имён {@link Person.enumManName} {@link Person.enumWomanName}
+     * по параметру пол {@link Person#sex}
+     * @param sex - значение пола для подбора случайного имени
      */
     public void setName(Sex sex) {
         if (this.getSex().equals("WOMAN")) {
@@ -275,7 +293,7 @@ public class Person {
     }
 
     /**
-     * метод задания параметра name объекта Person
+     * Функция задания параметра name {@link Person#name}
      * @param name строковое значение параметра name
      */
     public void setName(String name){
@@ -283,7 +301,7 @@ public class Person {
     }
 
     /**
-     * автоконструктор с рандомным подбором параметров Person age, name, sex
+     * автоконструктор с рандомным подбором параметров Person age, name, sex {@link Person#name} {@link Person#sex} {@link Person#age}
      */
     public Person() {
         Random rand = new Random();
@@ -294,7 +312,7 @@ public class Person {
     }
 
     /**
-     * конструктор с явным внесением параметров Person
+     * конструктор с явным внесением параметров Person {@link Person#name} {@link Person#sex} {@link Person#age}
      * @param name - имя Person
      * @param age - возраст Person
      * @param sex - пол Person
@@ -307,12 +325,12 @@ public class Person {
     }
 
     /**
-     * вывод параметров объекта Person в строку
+     * Функция перевода параметров объекта Person в строку {@link Person#name} {@link Person#sex} {@link Person#age}
      * @return значения параметров Person через запятую
      */
     @Override
     public String toString() {
         return this.getSex()+","+this.getAge()+","+this.getName();
     }
-    
+
 }
