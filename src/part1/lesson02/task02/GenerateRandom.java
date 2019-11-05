@@ -11,7 +11,10 @@ import java.util.Scanner;
  */
 
 public class GenerateRandom {
-    public static void main(String[] args) {
+    /**
+     * Вызов генерации N случайных чисел и обработки логики по поиску заданного условия.
+     */
+    public static void main() {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите количество генерируемых элементов N:");
         int n = in.nextInt();

@@ -22,10 +22,18 @@ public class Sex {
         this.sex = (sex%2==0)?"MAN":"WOMAN";
     }
 
+    /**
+     * метод получения строкового значения параметра sex
+     * @return строковое значение параметра sex
+     */
     public String getSex() {
         return sex;
     }
 
+    /**
+     * метод получения строкового значения параметра sex
+     * @return строковое значение параметра sex
+     */
     @Override
     public String toString() {
         return this.getSex();

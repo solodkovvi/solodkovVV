@@ -5,7 +5,10 @@ package part1.lesson02.task01;
  *  @author SolodkovVV
  */
 public class CallThrow {
-    public static void main(String[] args) {
+    /**
+     * Вызов ошибки оператором throw. Ошибка NumberFormatException взята для примера.
+     */
+    public static void main() {
         System.out.println("Hello, World!");
         throw new NumberFormatException("any throw");
     }

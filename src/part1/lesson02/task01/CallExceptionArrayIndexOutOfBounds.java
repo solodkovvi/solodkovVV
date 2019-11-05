@@ -5,7 +5,10 @@ package part1.lesson02.task01;
 * @author SolodkovVV
  */
 public class CallExceptionArrayIndexOutOfBounds {
-    public static void main(String[] args) {
+    /**
+     * Вызов ошибки «ArrayIndexOutOfBoundsException»
+     */
+    public static void main() {
         System.out.println("Hello, World!");
         String s = "null";
         System.out.println(s.charAt(10));

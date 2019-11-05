@@ -112,7 +112,7 @@ public class Person {
         Miles,
         Sawyer,
         Jason
-    };
+    }
     enum enumWomanName {
         Emma,
         Olivia,
@@ -219,24 +219,44 @@ public class Person {
     private Sex sex;
     private String name;
 
+    /**
+     * метод получения параметра age
+     * @return int age
+     */
     public int getAge() {
         return age;
     }
 
+    /**
+     * метод задания параметра age
+     * @param age - задаваемое значение age объекта Person
+     */
     public void setAge(int age) {
         if (age>0 && age<=100) {
             this.age = age;
         } else this.age = 0;
     }
 
+    /**
+     * метод получения строкового значения поля Sex
+     * @return строковое значение Sex
+     */
     public String getSex() {
         return sex.getSex();
     }
 
+    /**
+     * метод задания параметра sex
+     * @param sex объект класса sex
+     */
     public void setSex(Sex sex) {
         this.sex = sex;
     }
 
+    /**
+     * метод получения параметра name объекта Person
+     * @return строковое значение name
+     */
     public String getName() {
         return name;
     }
@@ -254,6 +274,10 @@ public class Person {
         }
     }
 
+    /**
+     * метод задания параметра name объекта Person
+     * @param name строковое значение параметра name
+     */
     public void setName(String name){
         this.name = name;
     }
@@ -282,13 +306,13 @@ public class Person {
         this.setName(name);
     }
 
+    /**
+     * вывод параметров объекта Person в строку
+     * @return значения параметров Person через запятую
+     */
     @Override
     public String toString() {
         return this.getSex()+","+this.getAge()+","+this.getName();
     }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
+    
 }

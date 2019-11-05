@@ -17,7 +17,7 @@ package part1.lesson02.task03;
  */
 public class sortPerson {
 
-    static int ARRAY_LENGTH = 10000;
+    private static int ARRAY_LENGTH = 10000;
 
     public static void main(String[] args) {
         //Создание основного массива Person для сортировки
