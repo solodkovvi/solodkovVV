@@ -15,18 +15,18 @@ package part1.lesson02.task03;
  *         Если имена людей и возраст совпадают, выбрасывать в программе пользовательское исключение.
  * @author SolodkovVV
  */
-public class sortPerson {
+public class SortPerson {
 
     private static int ARRAY_LENGTH = 10000;
 
     /**
      * Генерация массива {@link Person},
-     * вывод неотсортированного массива {@link sortPerson#printArr(Person[])},
+     * вывод неотсортированного массива {@link SortPerson#printArr(Person[])},
      * сортировка массива двумя способами {@link BubbleSortPerson} {@link InsertionSortPerson} по правилу интерфейса {@link ComparatorPerson#compare(Person, Person)}
-     * вывод сортированного массива {@link sortPerson#printArr(Person[])}
+     * вывод сортированного массива {@link SortPerson#printArr(Person[])}
      * подсчёт времени вывполнения массива
      */
-    public static void main() {
+    public static void main(String[] args) {
         //Создание основного массива Person для сортировки
         Person[] arrPerson = new Person[ARRAY_LENGTH];
         //Для корректного сравнения сортировок добавлена копия первого массива

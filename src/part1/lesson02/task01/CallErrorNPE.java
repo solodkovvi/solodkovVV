@@ -10,7 +10,7 @@ public class CallErrorNPE {
     /**
      * Вызов ошибки «NullPointerException»
      */
-    public static void main() {
+    public static void main(String[] args) {
         System.out.println("Hello, World!");
         String s = null;
         System.out.println(s.charAt(0));
