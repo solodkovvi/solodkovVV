@@ -41,7 +41,7 @@ public class SortPerson {
         System.out.println("Unsorted array one:");
         printArr(arrPerson);
         long timer1 = System.currentTimeMillis();
-        InsertionSortPerson.insertionSort(arrPerson);
+        (new InsertionSortPerson()).sort(arrPersonCopy);
         timer1 = System.currentTimeMillis()-timer1;
         System.out.println("Sorted array one:");
         printArr(arrPerson);
@@ -50,7 +50,8 @@ public class SortPerson {
         System.out.println("Unsorted array two:");
         printArr(arrPersonCopy);
         long timer2 = System.currentTimeMillis();
-        BubbleSortPerson.bubbleSort(arrPersonCopy);
+        (new BubbleSortPerson()).sort(arrPersonCopy);
+        //BubbleSortPerson.bubbleSort(arrPersonCopy);
         timer2 = System.currentTimeMillis()-timer2;
         System.out.println("Sorted array two:");
         printArr(arrPersonCopy);

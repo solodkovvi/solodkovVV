@@ -9,7 +9,7 @@ public interface ComparatorPerson {
      * @return 1 - переменные находятся на правильных местах; 0 - необходимо поменять местами переменные
      * @exception IllegalArgumentException при сравнении дубликатов возникает ошибка. Для работы с большим массивом необходимо закомментировать, иначе будет срабатывать постоянно.
      */
-    public static int compare(Person o1, Person o2) {
+    static int compare(Person o1, Person o2) {
         if ((o1.getSex().equals("MAN") && o2.getSex().equals("WOMAN"))
                 || (o1.getSex().equals(o2.getSex()) && o1.getAge()>o2.getAge())
                 || (o1.getSex().equals(o2.getSex()) && o1.getAge()==o2.getAge() && o1.getName().compareTo(o2.getName())<0)
@@ -22,4 +22,10 @@ public interface ComparatorPerson {
         }
         return 0;
     }
+
+    /**
+     * метод для сортировки
+     * @param p - массив Person для сортировки {@link Person}
+     */
+    void sort(Person[] p);
 }

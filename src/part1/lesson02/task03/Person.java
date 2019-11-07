@@ -12,218 +12,6 @@ import java.util.Random;
 public class Person {
 
     /**
-     * Набор возможных имён для мужчин
-     */
-    enum enumManName {
-        Liam,
-        Noah,
-        William,
-        James,
-        Oliver,
-        Benjamin,
-        Elijah,
-        Lucas,
-        Mason,
-        Logan,
-        Alexander,
-        Ethan,
-        Jacob,
-        Michael,
-        Daniel,
-        Henry,
-        Jackson,
-        Sebastian,
-        Aiden,
-        Matthew,
-        Samuel,
-        David,
-        Joseph,
-        Carter,
-        Owen,
-        Wyatt,
-        John,
-        Jack,
-        Luke,
-        Jayden,
-        Dylan,
-        Grayson,
-        Levi,
-        Isaac,
-        Gabriel,
-        Julian,
-        Mateo,
-        Anthony,
-        Jaxon,
-        Lincoln,
-        Joshua,
-        Christopher,
-        Andrew,
-        Theodore,
-        Caleb,
-        Ryan,
-        Asher,
-        Nathan,
-        Thomas,
-        Leo,
-        Isaiah,
-        Charles,
-        Josiah,
-        Hudson,
-        Christian,
-        Hunter,
-        Connor,
-        Eli,
-        Ezra,
-        Aaron,
-        Landon,
-        Adrian,
-        Jonathan,
-        Nolan,
-        Jeremiah,
-        Easton,
-        Elias,
-        Colton,
-        Cameron,
-        Carson,
-        Robert,
-        Angel,
-        Maverick,
-        Nicholas,
-        Dominic,
-        Jaxson,
-        Greyson,
-        Adam,
-        Ian,
-        Austin,
-        Santiago,
-        Jordan,
-        Cooper,
-        Brayden,
-        Roman,
-        Evan,
-        Ezekiel,
-        Xavier,
-        Jose,
-        Jace,
-        Jameson,
-        Leonardo,
-        Bryson,
-        Axel,
-        Everett,
-        Parker,
-        Kayden,
-        Miles,
-        Sawyer,
-        Jason
-    }
-
-    /**
-     * Набор возможных имён для женщин
-     */
-    enum enumWomanName {
-        Emma,
-        Olivia,
-        Ava,
-        Isabella,
-        Sophia,
-        Charlotte,
-        Mia,
-        Amelia,
-        Harper,
-        Evelyn,
-        Abigail,
-        Emily,
-        Elizabeth,
-        Mila,
-        Ella,
-        Avery,
-        Sofia,
-        Camila,
-        Aria,
-        Scarlett,
-        Victoria,
-        Madison,
-        Luna,
-        Grace,
-        Chloe,
-        Penelope,
-        Layla,
-        Riley,
-        Zoey,
-        Nora,
-        Lily,
-        Eleanor,
-        Hannah,
-        Lillian,
-        Addison,
-        Aubrey,
-        Ellie,
-        Stella,
-        Natalie,
-        Zoe,
-        Leah,
-        Hazel,
-        Violet,
-        Aurora,
-        Savannah,
-        Audrey,
-        Brooklyn,
-        Bella,
-        Claire,
-        Skylar,
-        Lucy,
-        Paisley,
-        Everly,
-        Anna,
-        Caroline,
-        Nova,
-        Genesis,
-        Emilia,
-        Kennedy,
-        Samantha,
-        Maya,
-        Willow,
-        Kinsley,
-        Naomi,
-        Aaliyah,
-        Elena,
-        Sarah,
-        Ariana,
-        Allison,
-        Gabriella,
-        Alice,
-        Madelyn,
-        Cora,
-        Ruby,
-        Eva,
-        Serenity,
-        Autumn,
-        Adeline,
-        Hailey,
-        Gianna,
-        Valentina,
-        Isla,
-        Eliana,
-        Quinn,
-        Nevaeh,
-        Ivy,
-        Sadie,
-        Piper,
-        Lydia,
-        Alexa,
-        Josephine,
-        Emery,
-        Julia,
-        Delilah,
-        Arianna,
-        Vivian,
-        Kaylee,
-        Sophie,
-        Brielle,
-        Madeline
-    }
-
-    /**
      * Возраст объекта Person
      */
     private int age;
@@ -235,6 +23,30 @@ public class Person {
      * Имя объекта Person
      */
     private String name;
+
+    /**
+     * автоконструктор с рандомным подбором параметров Person age, name, sex {@link Person#name} {@link Person#sex} {@link Person#age}
+     */
+    public Person() {
+        Random rand = new Random();
+        this.sex = new Sex();
+        this.sex.setSex(rand.nextInt(2));
+        this.setAge(rand.nextInt(100));
+        this.setName(this.sex);
+    }
+
+    /**
+     * конструктор с явным внесением параметров Person {@link Person#name} {@link Person#sex} {@link Person#age}
+     * @param name - имя Person
+     * @param age - возраст Person
+     * @param sex - пол Person
+     */
+    public Person(String name, int age, String sex) {
+        this.sex = new Sex();
+        this.sex.setSex(sex);
+        this.setAge(age);
+        this.setName(name);
+    }
 
     /**
      * Функция получения параметра возраст {@link Person#age}
@@ -279,16 +91,16 @@ public class Person {
     }
 
     /**
-     * Функция случайной установки имени из наборов имён {@link Person.enumManName} {@link Person.enumWomanName}
+     * Функция случайной установки имени из наборов имён {@link ManName} {@link WomanName}
      * по параметру пол {@link Person#sex}
      * @param sex - значение пола для подбора случайного имени
      */
     public void setName(Sex sex) {
         if (this.getSex().equals("WOMAN")) {
-            this.name = enumWomanName.values()[new Random().nextInt(enumWomanName.values().length)].toString();
+            this.name = WomanName.values()[new Random().nextInt(WomanName.values().length)].toString();
         }
         else if (this.getSex().equals("MAN")) {
-            this.name = enumManName.values()[new Random().nextInt(enumManName.values().length)].toString();
+            this.name = ManName.values()[new Random().nextInt(ManName.values().length)].toString();
         }
     }
 
@@ -300,29 +112,6 @@ public class Person {
         this.name = name;
     }
 
-    /**
-     * автоконструктор с рандомным подбором параметров Person age, name, sex {@link Person#name} {@link Person#sex} {@link Person#age}
-     */
-    public Person() {
-        Random rand = new Random();
-        this.sex = new Sex();
-        this.sex.setSex(rand.nextInt(2));
-        this.setAge(rand.nextInt(100));
-        this.setName(this.sex);
-    }
-
-    /**
-     * конструктор с явным внесением параметров Person {@link Person#name} {@link Person#sex} {@link Person#age}
-     * @param name - имя Person
-     * @param age - возраст Person
-     * @param sex - пол Person
-     */
-    public Person(String name, int age, String sex) {
-        this.sex = new Sex();
-        this.sex.setSex(sex);
-        this.setAge(age);
-        this.setName(name);
-    }
 
     /**
      * Функция перевода параметров объекта Person в строку {@link Person#name} {@link Person#sex} {@link Person#age}

@@ -5,7 +5,8 @@ public class InsertionSortPerson implements ComparatorPerson{
      * Функция сортировка массива Person методом "Сортировка вставками". {@link Person}
      * @param p Сортируемый массив Person
      */
-    public static void insertionSort(Person[] p){
+    @Override
+    public void sort(Person[] p) {
         for (int left = 0; left < p.length; left++) {
             Person value = p[left];
             int i = left - 1;
@@ -19,5 +20,4 @@ public class InsertionSortPerson implements ComparatorPerson{
             p[i + 1] = value;
         }
     }
-
 }
