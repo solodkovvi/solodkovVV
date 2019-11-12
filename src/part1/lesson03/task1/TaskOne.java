@@ -14,9 +14,11 @@ public class TaskOne {
         MathBox<Number> mb = new MathBox(new Number[]{1,2,3,4});
         System.out.println(mb.summator()+"");
         mb.print();
+        System.out.println(mb.hashCode()+"");
         mb.splitter(2);
         mb.print();
-        MathBox<Byte> mb2 = new MathBox(new Byte[]{1,2,3,4});
+        MathBox<Number> mb2 = new MathBox(new Number[]{1,2,3,4});
+        System.out.println(mb.hashCode()+"");
         System.out.println(mb.equals(mb2));
         mb2.clearValue(2);
         mb2.print();
