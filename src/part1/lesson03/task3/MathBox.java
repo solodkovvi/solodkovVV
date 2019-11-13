@@ -74,7 +74,7 @@ public class MathBox<T extends Number> extends ObjectBox<T>{
      */
     @Override
     public int hashCode() {
-        return super.objectBox.hashCode()+3*this.summator()+7;
+        return this.getUuid().hashCode();
     }
     /**
      * Метод проверки соответсвия объекта со сравниваемым объектом.

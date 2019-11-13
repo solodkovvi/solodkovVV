@@ -2,6 +2,7 @@ package part1.lesson03.task3;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.UUID;
 
 /**
  * Задание 2. Создать класс ObjectBox, который будет хранить коллекцию Object.
@@ -15,10 +16,15 @@ public class ObjectBox<T extends Object>{
      */
     protected HashSet<T> objectBox;
     /**
+     * уникальный идентификатор объекта
+     */
+    private UUID uuid;
+    /**
      * Конструктор для создания колекции по внесенному массиву.
      * @param arr - массив с элементами, которые станут элементами коллекции
      */
     public ObjectBox(T[] arr){
+        uuid = UUID.randomUUID();
         objectBox = new HashSet<>();
         for (T obj:arr) {
             addObject(obj);
@@ -29,11 +35,20 @@ public class ObjectBox<T extends Object>{
      */
     public ObjectBox() {
     }
+
+    /** получение уникального идентификатора
+     * @return uuid объекта
+     */
+    public UUID getUuid() {
+        return uuid;
+    }
+
     /**
      * Метод добавления элемента в коллекцию
      * @param elem элемент для добавления в коллекцию
      * @return true - элемент успешно добавлен, false - элемент не был добавлен, т.к. уже присутствует в коллекции
      */
+
     public boolean addObject(T elem){
         return objectBox.add(elem);
     }

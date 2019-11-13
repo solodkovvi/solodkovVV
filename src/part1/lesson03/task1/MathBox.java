@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Contract;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.UUID;
 
 /**
  * Задание 1. Написать класс MathBox, реализующий следующий функционал:
@@ -22,12 +23,16 @@ public class MathBox<T extends Number> {
      * Коллекция для хранения элементов класса.
      */
     private HashSet<T> mathBox;
-
+    /**
+     * Уникальный идентификатор объекта
+     */
+    private UUID uuid;
     /**
      * Конструктор для создания колекции по внесенному массиву.
      * @param arrNum - массив с элементами, которые станут элементами коллекции
      */
     public MathBox(T[] arrNum){
+        uuid = UUID.randomUUID();
         mathBox = new HashSet<>();
         for (T num:arrNum) {
             mathBox.add(num);
@@ -101,7 +106,7 @@ public class MathBox<T extends Number> {
      */
     @Override
     public int hashCode() {
-        return this.mathBox.hashCode()+3*this.summator()+7;
+        return uuid.hashCode();
     }
 
     /**
