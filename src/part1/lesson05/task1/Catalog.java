@@ -11,7 +11,7 @@ public class Catalog {
     /**
      * Каталог животных
      */
-    private HashMap<UUID, Pet> catalog;
+    private Map<UUID, Pet> catalog;
 
     /**
      * Конструктор для создания каталога
