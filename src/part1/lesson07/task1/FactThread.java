@@ -10,7 +10,7 @@ public class FactThread implements Runnable {
      * key - чисто для которого ищем факториал
      * value - факториал этого числа
      */
-    private static Map<Integer, BigInteger> cacheMap = new HashMap<Integer, BigInteger>();
+    private static volatile Map<Integer, BigInteger> cacheMap = new HashMap<Integer, BigInteger>();
     /**
      * число, для которого вычисляем факториал
      */
@@ -40,8 +40,12 @@ public class FactThread implements Runnable {
         fact = BigInteger.valueOf(1);
         if (!(cacheMap.containsKey(calc))) {
             for (int i = 1; i <= calc; i++) {
-                fact = fact.multiply(BigInteger.valueOf(i));
-                cacheMap.put(i, fact);
+                if (cacheMap.containsKey(i)) {
+                    fact = cacheMap.get(i);
+                } else {
+                    fact = fact.multiply(BigInteger.valueOf(i));
+                    cacheMap.put(i, fact);
+                }
             }
         }
         return cacheMap.get(calc);
