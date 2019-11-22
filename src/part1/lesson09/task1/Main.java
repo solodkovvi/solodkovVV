@@ -63,12 +63,12 @@ public class Main {
         Scanner in = new Scanner(System.in);
         String tmp = in.nextLine();
         StringBuilder sb = new StringBuilder();
-        sb.append("package part1.lesson09.task1; public class SomeClass implements Worker { public SomeClass(){}  @Override public void doWork() {");
+        sb.append("package part1.lesson09.task1;\n\npublic class SomeClass implements Worker {\n\n\tpublic SomeClass(){}  \n\n\t@Override\n\tpublic void doWork() {\n");
         while (!tmp.isEmpty()){
-            sb.append(tmp);
+            sb.append("\t\t").append(tmp).append("\n");
             tmp = in.nextLine();
         }
-        sb.append("}}");
+        sb.append("\t}\n}");
         return sb.toString();
     }
 }
