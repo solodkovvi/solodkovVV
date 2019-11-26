@@ -39,7 +39,18 @@ public class Catalog {
      */
     public void sortPrint(){
         List tmp = new ArrayList<>(catalog.values());
-        tmp.stream().sorted(new ComparatorPet()).forEach(o -> System.out.println(o.toString()));
+        tmp.stream().sorted(new Comparator<Pet>() {
+                                @Override
+                                public int compare(Pet o1, Pet o2) {
+                                    if ((o1.getOwner().getName().equals(o2.getOwner().getName()))) {
+                                        if (o1.getName().equals(o2.getName()))
+                                            return Double.compare(o1.getWeight(),o2.getWeight());
+                                        return o1.getName().compareTo(o2.getName());
+                                    }
+                                    return o1.getOwner().getName().compareTo(o2.getOwner().getName());
+                                }
+                            }).forEach(o -> System.out.println(o.toString()));
+//        tmp.stream().sorted(new ComparatorPet()).forEach(o -> System.out.println(o.toString()));
 //        tmp.sort(new ComparatorPet());
 //        for (Iterator iterator = tmp.iterator();iterator.hasNext();){
 //            System.out.println(iterator.next());
