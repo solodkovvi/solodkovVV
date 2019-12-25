@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <JDBC name="db" tableName="log">
+            <DriverManager connectionString="jdbc:postgresql://127.0.0.1:5432/docker" driverClassName="org.postgresql.Driver" username="docker" password="docker"/>
+<!--                    class="part1.lesson16.task1.connector.ConnectorJDBCImpl" method="getConnection" />-->
+            <Column name="date" isEventTimestamp="true" />
+            <Column name="log_level" pattern="%level" isUnicode="false"/>
+            <Column name="message" pattern="%message" isUnicode="false"/>
+            <Column name="exception" pattern="%ex{full}" isUnicode="false"/>
+        </JDBC>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="db" />
+        </Root>
+        <logger name="part1.lesson16.task1.Main" additivity="false">
+            <AppenderRef ref="db" />
+        </logger>
+    </Loggers>
+</Configuration>
