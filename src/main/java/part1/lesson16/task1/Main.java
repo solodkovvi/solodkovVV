@@ -3,6 +3,7 @@ package part1.lesson16.task1;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
+import part1.lesson16.task1.connector.ConnectorJDBC;
 import part1.lesson16.task1.connector.ConnectorJDBCImpl;
 
 import java.sql.*;
@@ -19,6 +20,7 @@ import org.apache.logging.log4j.LogManager;
  */
 public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
+    private static ConnectorJDBC connect = ConnectorJDBCImpl.getInstance();
     /**
      * Основной процесс разыгрывающий сценарии из задания
      * @param argv
@@ -30,9 +32,10 @@ public class Main {
         Role role2 = new Role(-1,"Clients", "Clients");
         Role role3 = new Role(-1,"Billing", "Billing");
         System.out.println("Сохраняем роли в базу и присваиваем id Из базы в обхекты");
-        role.setId(RoleSQLConnect.insertRole(role));
-        role2.setId(RoleSQLConnect.insertRole(role2));
-        role3.setId(RoleSQLConnect.insertRole(role3));
+        RoleSQLConnect roleSQLConnect = new RoleSQLConnect(connect);
+        role.setId(roleSQLConnect.insertRole(role));
+        role2.setId(roleSQLConnect.insertRole(role2));
+        role3.setId(roleSQLConnect.insertRole(role3));
         System.out.println("Выводим результат, который хранится в базе");
         System.out.println(RoleSQLConnect.getRoleById(role.getId()));
         System.out.println(RoleSQLConnect.getRoleById(role2.getId()));

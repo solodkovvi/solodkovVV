@@ -15,6 +15,16 @@ import java.sql.SQLException;
  */
 public class UserSQLConnect {
     private static final Logger logger = LogManager.getLogger(Main.class);
+    public static final String INSERT_USER = "INSERT INTO \"User\" " +
+            "(name, birthday, \"login_ID\", city, email, description) VALUES (?,?,?,?,?,?) returning id";
+    public static final String GET_BY_ID = "SELECT * FROM \"User\" " +
+            " WHERE id = ?";
+    public static final String DELETE_BY_ID = "DELETE FROM  \"User\" " +
+            " WHERE id = ?";
+    public static final String UPDATE_USER = "UPDATE \"User\" SET name = ?, birthday = ?, \"login_ID\" = ?, city = ?, email = ?, description = ? " +
+            " WHERE id = ?";
+    public static final String DELETE_BY_IDS = "DELETE FROM \"User\" WHERE id = ?";
+
     /**
      * Добавление пользователя в таблицу по объекту пользователю {@link User}
      * @param user объект пользоатель для создания в базе данных
@@ -22,8 +32,7 @@ public class UserSQLConnect {
      */
     public static int insertUser(User user){
         try (Connection connection = ConnectorJDBCImpl.getInstance().getConnection()) {
-            PreparedStatement insertStmt = connection.prepareStatement("INSERT INTO \"User\" " +
-                    "(name, birthday, \"login_ID\", city, email, description) VALUES (?,?,?,?,?,?) returning id");
+            PreparedStatement insertStmt = connection.prepareStatement(INSERT_USER);
             insertStmt.setString(1, user.getName());
             insertStmt.setDate(2, user.getBirthday());
             insertStmt.setInt(3,user.getLoginID());
@@ -49,8 +58,7 @@ public class UserSQLConnect {
      */
     public static User getUserById(int id){
         try (Connection connection = ConnectorJDBCImpl.getInstance().getConnection()) {
-            PreparedStatement selectStmt = connection.prepareStatement("select * from \"User\" " +
-                    " where id = ?");
+            PreparedStatement selectStmt = connection.prepareStatement(GET_BY_ID);
             selectStmt.setInt(1, id);
             ResultSet resultSet = selectStmt.executeQuery();
             if (resultSet.next()) {
@@ -79,8 +87,7 @@ public class UserSQLConnect {
      */
     public static boolean deleteUserById(int id){
         try (Connection connection = ConnectorJDBCImpl.getInstance().getConnection()) {
-            PreparedStatement insertStmt = connection.prepareStatement("DELETE from  \"User\" " +
-                    " where id = ?");
+            PreparedStatement insertStmt = connection.prepareStatement(DELETE_BY_ID);
             insertStmt.setInt(1, id);
             insertStmt.execute();
             return true;
@@ -99,9 +106,7 @@ public class UserSQLConnect {
      */
     public static boolean updateUser(User user){
         try (Connection connection = ConnectorJDBCImpl.getInstance().getConnection()) {
-            PreparedStatement insertStmt = connection.prepareStatement(
-                    "UPDATE \"User\" set name = ?, birthday = ?, \"login_ID\" = ?, city = ?, email = ?, description = ? " +
-                            "where id = ?");
+            PreparedStatement insertStmt = connection.prepareStatement(UPDATE_USER);
             insertStmt.setString(1, user.getName());
             insertStmt.setDate(2, user.getBirthday());
             insertStmt.setInt(3,user.getLoginID());
@@ -126,8 +131,7 @@ public class UserSQLConnect {
      */
     public static boolean deleteUserByIds(int[] id){
         try (Connection connection = ConnectorJDBCImpl.getInstance().getConnection()) {
-            PreparedStatement insertStmt = connection.prepareStatement("DELETE from  \"User\" " +
-                    " where id = ?");
+            PreparedStatement insertStmt = connection.prepareStatement(DELETE_BY_IDS);
             connection.setAutoCommit(false);
             for (int i = 0; i < id.length; i++) {
                 insertStmt.setInt(1, id[i]);

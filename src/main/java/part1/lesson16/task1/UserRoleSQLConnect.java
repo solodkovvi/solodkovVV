@@ -15,6 +15,11 @@ import java.sql.SQLException;
  */
 public class UserRoleSQLConnect {
     private static final Logger logger = LogManager.getLogger(Main.class);
+    public static final String INSERT_USERROLE = "INSERT INTO user_role (user_id, role_id) VALUES (?,?) RETURNING id";
+    public static final String GET_USERROLE_BY_ID = "SELECT * FROM user_role  WHERE id = ?";
+    public static final String DELETE_BY_ID = "DELETE FROM  user_role  WHERE id = ?";
+    public static final String DELETE_ALL = "DELETE FROM  user_role ";
+
     /**
      * Добавление связи пользователь и роль в таблицу
      * @param userRole параметр для добавления в таблицу
@@ -22,8 +27,7 @@ public class UserRoleSQLConnect {
      */
     public static int insertUserRole(UserRole userRole){
         try (Connection connection = ConnectorJDBCImpl.getInstance().getConnection()) {
-            PreparedStatement insertStmt = connection.prepareStatement("INSERT INTO user_role " +
-                    "(user_id, role_id) VALUES (?,?) returning id");
+            PreparedStatement insertStmt = connection.prepareStatement(INSERT_USERROLE);
             insertStmt.setInt(1, userRole.getUserId());
             insertStmt.setInt(2, userRole.getRoleId());
             ResultSet resultSet = insertStmt.executeQuery();
@@ -45,8 +49,7 @@ public class UserRoleSQLConnect {
      */
     public static UserRole getUserRoleById(int id){
         try (Connection connection = ConnectorJDBCImpl.getInstance().getConnection()) {
-            PreparedStatement selectStmt = connection.prepareStatement("select * from user_role " +
-                    " where id = ?");
+            PreparedStatement selectStmt = connection.prepareStatement(GET_USERROLE_BY_ID);
             selectStmt.setInt(1, id);
             ResultSet resultSet = selectStmt.executeQuery();
             if (resultSet.next()) {
@@ -71,8 +74,7 @@ public class UserRoleSQLConnect {
      */
     public static boolean deleteUserRoleById(int id){
         try (Connection connection = ConnectorJDBCImpl.getInstance().getConnection()) {
-            PreparedStatement insertStmt = connection.prepareStatement("DELETE from  user_role " +
-                    " where id = ?");
+            PreparedStatement insertStmt = connection.prepareStatement(DELETE_BY_ID);
             insertStmt.setInt(1, id);
             insertStmt.execute();
             return true;
@@ -90,8 +92,7 @@ public class UserRoleSQLConnect {
      */
     public static boolean deleteAll(){
         try (Connection connection = ConnectorJDBCImpl.getInstance().getConnection()) {
-            PreparedStatement insertStmt = connection.prepareStatement("DELETE from  user_role " +
-                    " ");
+            PreparedStatement insertStmt = connection.prepareStatement(DELETE_ALL);
             insertStmt.execute();
             return true;
         }
